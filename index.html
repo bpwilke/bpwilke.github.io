@@ -23,15 +23,8 @@
   'custom_map': {'dimension1': 'gender', 'dimension2': 'applesbananas'}
   });
   
-  // call new dimension
-  var dimension1Value = 'Male';
-  ga('set', 'dimension1', dimension1Value);
-  
-  var dimension2Value = 'Apples';
-  ga('set', 'dimension2', dimension2Value);
-  
   // Sends the custom dimension to Google Analytics.
-  gtag('event', 'Event With Dimensions', {'gender': 'male'});
+  gtag('event', 'Event With Dimensions', {'gender': 'male', 'applesbananas': 'apples'});
   
   gtag('event', 'page_view', {
   page_title: 'Manual Title',
