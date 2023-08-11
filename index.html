@@ -44,18 +44,22 @@
     }();
   </script>
   <!-- \Segment Tag -->
+
   <script>
+  //Only run if all of analytics.js has loaded
+  analytics.ready(function) { 
     // Only run if in an iframe
-    if (window.top !== window.self) {
-      console.log('running post message');
-      //let anonId = localStorage.getItem("ajs_anonymous_id");
-      let anonId = analytics.user().anonymousId();
-      console.log(anonId);
-      window.top.postMessage({
-        message: anonId
-      }, '*');
-      console.log('finished post message');
+      if (window.top !== window.self) {
+        console.log('running post message');
+        //let anonId = localStorage.getItem("ajs_anonymous_id");
+        let anonId = analytics.user().anonymousId();
+        console.log(anonId);
+        window.top.postMessage({
+          message: anonId
+          }, '*');
+        console.log('finished post message');
     }
+  }
   </script>
 </head>
 
