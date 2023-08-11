@@ -41,8 +41,6 @@
           analytics.debug(true);
           analytics.load("rdk3E30NKjPX3wc00xwRs7RAD45lmgC9");
           analytics.page(null, 'iFrame Page View');
-          let anonId = analytics.user().anonymousId();
-          console.log(anonId);
         }
     }();
   </script>
@@ -50,7 +48,7 @@
 
   <script>
   // Only run if all of analytics.js has loaded
-  analytics.ready(function) { 
+  analytics.ready(function() { 
     // Only run if in an iframe
       if (window.top !== window.self) {
         console.log('running post message');
@@ -62,7 +60,7 @@
           }, '*');
         console.log('finished post message');
     }
-  }
+  });
   </script>
 </head>
 
