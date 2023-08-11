@@ -41,7 +41,7 @@
           analytics.debug(true);
           analytics.load("4rn8nIFPikRlrBrSB98rrobt26e8JMpE");
           analytics.reset();
-          analytics.page(null, 'iFrame Page View');
+      
         }
     }();
   </script>
@@ -56,9 +56,8 @@
         //let anonId = localStorage.getItem("ajs_anonymous_id");
         let anonId = analytics.user().anonymousId();
         console.log(anonId);
-        window.parent.postMessage({
-          message: anonId
-          }, '*');
+        analytics.page(null, 'iFrame Page View');
+        window.parent.postMessage(anonId, '*');
         console.log('finished post message');
     }
   });
