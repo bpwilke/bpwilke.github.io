@@ -55,7 +55,7 @@
         //let anonId = localStorage.getItem("ajs_anonymous_id");
         let anonId = analytics.user().anonymousId();
         console.log(anonId);
-        window.top.postMessage({
+        window.parent.postMessage({
           message: anonId
           }, '*');
         console.log('finished post message');
