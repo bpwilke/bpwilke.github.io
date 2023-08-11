@@ -2,28 +2,9 @@
 
 <head>
   <title>CrossDomainChild</title>
+  <!-- Segment Tag -->
   <script>
-    var allowedOrigins = ['https://bpwilke.github.io/index.html'];
-    
-    // listen for messages from other windows
-    window.addEventListener('message', handleMessage);
-  
-    var handleMessage = function(event) {
-    // Abort if request doesn't come from a valid origin
-    //if (!allowedOrigins.includes(event.origin)) return;
-      console.log('received message');
-      console.log("event", event);
-      console.log("data", event.data);
-      console.log("message", event.data.message);
-      // write new anonymous_id to local storage
-      localStorage.setItem("ajs_anonymous_id", event.data.message);
-    }
-  
-  </script>
-
-<!-- Segment Tag -->
-  <script>
-    ! function () {
+    var load_segment = function(anonymousId) {
       var analytics = window.analytics = window.analytics || [];
       if (!analytics.initialize)
         if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
@@ -58,24 +39,29 @@
           analytics._writeKey = "4rn8nIFPikRlrBrSB98rrobt26e8JMpE";;
           analytics.SNIPPET_VERSION = "4.16.1";
           analytics.load("4rn8nIFPikRlrBrSB98rrobt26e8JMpE");
-          
-          //analytics.setAnonymousId('ABC-123-XYZ')
-          
-
+          analytics.setAnonymousId(anonymousId);
+          // call analytics.page() with replaced anonymous ID
+          analytics.page(null, 'Parent Page View')
         }
-    }();
+    };
 </script>
+  <!-- \Segment Tag -->
+  
+  <script>
+    var allowedOrigins = ['https://bpwilke.github.io/'];
+    
+    var handleMessage = function(event) {
+    // Abort if request doesn't come from a valid origin
+    //if (!allowedOrigins.includes(event.origin)) return;
+      console.log('received message');
+      console.log(event.data);
+      load_segment(event.data);  
+    }
 
-
-
-
-
-
-<script>
-  // call analytics.page() with replaced anonymous ID
-analytics.page(null, 'Parent Page View');
+// listen for messages from other windows
+window.addEventListener('message', handleMessage, false);
+  
 </script>
-
 
 </head>
 
