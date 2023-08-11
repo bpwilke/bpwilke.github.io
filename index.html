@@ -57,7 +57,7 @@
         let anonId = analytics.user().anonymousId();
         console.log(anonId);
         analytics.page(null, 'iFrame Page View');
-        window.parent.postMessage(anonId, '*');
+        top.postMessage(anonId, '*');
         console.log('finished post message');
     }
   });
