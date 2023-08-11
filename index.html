@@ -49,6 +49,7 @@
     if (window.top !== window.self) {
       console.log('running post message');
       let anonId = localStorage.getItem("ajs_anonymous_id");
+      console.log(anonId);
       window.top.postMessage({
         message: anonId
       }, '*');
