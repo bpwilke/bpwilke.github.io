@@ -41,7 +41,8 @@
           analytics.debug(true);
           analytics.load("rdk3E30NKjPX3wc00xwRs7RAD45lmgC9");
           analytics.page(null, 'iFrame Page View');
-          console.log(analytics.user().anonymousId());
+          let anonId = analytics.user().anonymousId();
+          console.log(anonId);
         }
     }();
   </script>
